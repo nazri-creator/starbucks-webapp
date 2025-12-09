@@ -45,5 +45,61 @@
             </div>
         </div>
     </nav>
+    <div class="flex items-center justify-between px-8">
+        <div class="w-full">
+            <div class="font-extrabold text-xl">Caramel Ribbon</div>
+            <div class="flex items-center gap-10 justify-left">
+                <div>
+                <i class="fi fi-ss-star text-amber-400 text-xl"></i>
+                <i class="fi fi-ss-star text-amber-400 text-xl"></i>
+                <i class="fi fi-ss-star text-amber-400 text-xl"></i>
+                <i class="fi fi-ss-star text-amber-400 text-xl"></i>        
+                </div>
+                <div class="font-extrabold text-[#2F7B5D]">
+                    IDR. 32K
+                </div>
+            </div>
+        <div class="text-xs">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic deleniti consequatur velit voluptas esse, laboriosam impedit porro minima, dignissimos assumenda fuga nesciunt similique eum cumque?
+        </div>
+        <div class="flex gap-3 ">
+            <div class="w-12 h-12 border rounded-xl flex items-center justify-center hover:text-emerald-800">
+                <img src="img/cupl.png" class="w-8">
+            </div>
+            <div class="w-12 h-12 border  rounded-xl flex items-center justify-center hover:text-emerald-800">
+                <img src="img/cupm.png" class="w-8">
+            </div>
+            <div class="w-12 h-12 border rounded-xl flex items-center justify-center hover:text-emerald-800">
+                <img src="img/cups.png" class="w-8">
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="flex items-center border rounded-full bg-white px-10 gap-5">
+                <button onclick="decreaseQty()">-</button>
+                <span id="qtyNumber">1</span>
+                <button onclick="increaseQty()">+</button>
+            </div>
+            <button class="bg-emerald-700 font-bold text-white px-4 py-2 rounded-lg hover:bg-emerald-800">Add to cart</button>
+        </div>
+        <a href="#" class="bg-emerald-200  px-4 py-1 rounded-xl text-emerald-700">Find More</a>
+        </div>
+        <div class="w-full">
+            <img src="img/1 (1).png" class="w-80">
+        </div>
+    </div>
+    <script>
+        let qty = 1;
+        function increaseQty() {
+            qty++;
+            document.getElementById("qtyNumber").
+            innerText = qty;
+        }
+        function decreaseQty() {
+            if (qty > 1)
+            qty--;
+            document.getElementById("qtyNumber").
+            innerText = qty;
+        }
+    </script>
 </body>
 </html>
