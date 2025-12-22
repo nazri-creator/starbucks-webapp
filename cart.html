@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailwindcss</title>
+    <!-- TAILWINDCSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FONT -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- CDN FLATICON -->
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-straight/css/uicons-solid-straight.css"
+    />
+  </head>
+  <body class="bg-[#F5F1EE] h-screen font-[Poppins]">
+    <img
+      src="/img/bg-1.png"
+      class="absolute top-0 -z-10 w-[650px] left-[650px]"
+    />
+    <nav class="w-full px-2 py-3 flex items-center justify-between">
+      <!-- LOGO -->
+      <div class="flex items-center">
+        <img src="/img/logo.png" class="h-10" />
+        <div class="flex gap-1 items-center text-sm">
+          <div class="mt-1"><i class="fi fi-rs-star text-[#2F7B5D]"></i></div>
+          <div class="font-extrabold text-green-900">STARBUCKS</div>
+          <div class="mt-1"><i class="fi fi-rs-star text-[#2F7B5D]"></i></div>
+        </div>
+      </div>
+
+      <!-- MENU -->
+      <div class="flex gap-10 text-[#6D4C41] font-semibold">
+        <a href="menu.html">Menu </a>
+        <a href="trending.html">Trending</a>
+        <a href="Nazri.html">About us</a>
+      </div>
+
+      <!-- PROFILE -->
+      <div class="flex">
+        <div class="text-right text-[12px] mr-1">
+          <p>User</p>
+          <p>user@gmail.com</p>
+        </div>
+        <div><img src="img/1 (8).png" class="w-10" /></div>
+        <div>
+          <div
+            class="bg-white h-10 w-10 rounded-full flex items-center justify-between"
+          >
+            <i class="fi fi-ss-shopping-cart ml-2 mt-2 text-[23px]"></i>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="flex items-center justify-center mt-20">
+      <div class="bg-white p-8 w-1/3 rounded-3xl">
+        <div class="font-bold text-xl">YOUR ORDER</div>
+        <hr class="border-t-2" />
+        <div class="flex items-center">
+          <div><img src="img/1 (1).png" class="w-14" /></div>
+          <div>
+            <div class="font-bold text-">Salted Pecan Crunch Cold Brew</div>
+            <div class="font-bold text-">1 Item</div>
+          </div>
+          <div class="text-right ml-1">
+            <div class="font-bold text-xs">IDR. 30.000</div>
+            <div class="font-bold text-xs">Delete</div>
+          </div>
+        </div>
+        <hr class="border-t-2" />
+        <div class="flex items-center justify-between">
+          <div class="font-bold">Total Price</div>
+          <div class="font-bold">30.000</div>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center justify-center mt-4">
+      <div class="bg-white p-8 w-1/3 rounded-3xl">
+        <div class="font-bold text-[#595959] text-xl">PAYMENT METHODE</div>
+        <hr class="border-1 mt-2" />
+        <form onsubmit="handleSubmit(event)" method="post">
+          <div class="mt-4">
+            <select
+              id="paymentMethod"
+              class="w-full border rounded-lg p-2"
+              onchange="handlePaymentChange()"
+            >
+              <option value="">---Pilih Payment---</option>
+              <option value="gopay">Gopay</option>
+              <option value="dana">Dana</option>
+            </select>
+          </div>
+          <div id="paymentDetail" class="mt-6 hidden text-center">
+            <p class="text-gray-600 text-sm">Nomor Pembayaran</p>
+            <p id="paymentNumber" class="font-bold text-lg mt-1"></p>
+
+            <img
+              id="paymentQr"
+              src=""
+              alt="Qr Code"
+              class="w-40 h-40 mx-auto mt-4"
+            />
+          </div>
+          <button
+            type="submit"
+            class="bg-[#2F7B5D] text-white px-8 mt-4 py-1 rounded-3xl"
+            onclick="showToast()"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+    <div
+      id="toast"
+      class="fixed top-6 right-6 bg-emerald-100 text-emerald-800 px-6 py-3 rounded-xl shadow-lg opacity-0 pointer-events-none transition-all duration-300"
+    >
+      ✅ Payment berhasil!
+    </div>
+    <script>
+      function handlePaymentChange() {
+        const method = document.getElementById("paymentMethod").value;
+        const detail = document.getElementById("paymentDetail");
+        const number = document.getElementById("paymentNumber");
+        const qr = document.getElementById("paymentQr");
+
+        if (method === "gopay") {
+          detail.classList.remove("hidden");
+          number.textContent = "12345";
+          qr.src =
+            "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=GOPAY-12345";
+        } else if (method === "dana") {
+          detail.classList.remove("hidden");
+          number.textContent = "67890";
+          qr.src =
+            "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=DANA-67890";
+        } else {
+          detail.classList.add("hidden");
+          number.textContent = "";
+          qr.src = "";
+        }
+      }
+    </script>
+    <script>
+      function handleSubmit(event) {
+        event.preventDefault();
+        showToast();
+      }
+    </script>
+    <script>
+      function showToast() {
+        const toast = document.getElementById("toast");
+
+        toast.classList.remove("opacity-0");
+        toast.classList.add("opacity-100");
+
+        setTimeout(() => {
+          toast.classList.remove("opacity-100");
+          toast.classList.add("opacity-0");
+        }, 3000);
+      }
+    </script>
+
+  </body>
+</html>
